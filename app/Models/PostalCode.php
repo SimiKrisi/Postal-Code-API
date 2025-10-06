@@ -8,4 +8,8 @@ class PostalCode extends Model
 {
     public $timestamps = false;
     protected $fillable = ['code','name','countyid'];
+    public function county()
+    {
+        return $this->belongsTo(County::class);
+    }
 }

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('code');
             $table->string('name');
-            $table->integer('county_id')->nullable();
+            $table->unsignedBigInteger('county_id')->nullable();
+            $table->foreign('county_id')->references('id')->on('counties');
         });
     }
 
