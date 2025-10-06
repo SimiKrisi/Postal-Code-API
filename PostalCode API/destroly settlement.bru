@@ -1,0 +1,19 @@
+meta {
+  name: destroly settlement
+  type: http
+  seq: 8
+}
+
+delete {
+  url: http://localhost:8000/api/settlements/1
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 4|6zor1m7tTaDR3niw55wbXJLBuSCcQjJyqJhZ0Nvr3b973b19
+}
+
+settings {
+  encodeUrl: true
+}

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PostalCode;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,9 +29,5 @@ class UserController extends Controller
             'user'=>$user,
         ]);
     }
-    public function index(){
-        $settlements = PostalCode::with('county')->get();
-
-        return response()->json(['settlements'=>$settlements]);
-    }
+    
 }

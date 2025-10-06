@@ -1,0 +1,25 @@
+meta {
+  name: county add
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/api/counties
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 4|6zor1m7tTaDR3niw55wbXJLBuSCcQjJyqJhZ0Nvr3b973b19
+}
+
+body:json {
+  {
+    "name": "Orfasaaasdaf"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

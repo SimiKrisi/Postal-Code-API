@@ -1,0 +1,15 @@
+meta {
+  name: Cities list
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8000/api/settlements
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

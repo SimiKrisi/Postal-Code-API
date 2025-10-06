@@ -1,0 +1,19 @@
+meta {
+  name: destroly county
+  type: http
+  seq: 9
+}
+
+delete {
+  url: http://localhost:8000/api/counties/20
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 4|6zor1m7tTaDR3niw55wbXJLBuSCcQjJyqJhZ0Nvr3b973b19
+}
+
+settings {
+  encodeUrl: true
+}
