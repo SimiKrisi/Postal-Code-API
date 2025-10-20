@@ -1,0 +1,185 @@
+API Dokumentáció
+1. Counties API
+1.1 Create County
+
+Endpoint: POST /counties
+
+Request Body: application/json
+
+{
+  "name": "Pest",
+  "code": "PE" 
+}
+
+
+Minden mező a CountyRequest validációtól függ.
+
+Response (201 Created):
+
+{
+  "message": "County created successfully",
+  "county": {
+    "id": 1,
+    "name": "Pest",
+    "code": "PE",
+    "created_at": "2025-10-20T12:00:00Z",
+    "updated_at": "2025-10-20T12:00:00Z"
+  }
+}
+
+1.2 Update County
+
+Endpoint: PUT /counties/{id}
+
+Request Body: application/json
+
+{
+  "name": "Pest Updated",
+  "code": "PEU"
+}
+
+
+Response (200 OK):
+
+{
+  "message": "County updated successfully",
+  "county": {
+    "id": 1,
+    "name": "Pest Updated",
+    "code": "PEU",
+    "created_at": "2025-10-20T12:00:00Z",
+    "updated_at": "2025-10-20T12:10:00Z"
+  }
+}
+
+1.3 Delete County
+
+Endpoint: DELETE /counties/{id}
+
+Response (200 OK):
+
+{
+  "message": "County deleted successfully"
+}
+
+2. Settlements API
+2.1 List Settlements
+
+Endpoint: GET /settlements
+
+Response (200 OK):
+
+{
+  "settlements": [
+    {
+      "id": 1,
+      "postal_code": "1000",
+      "name": "Budapest",
+      "county_id": 1,
+      "created_at": "2025-10-20T12:00:00Z",
+      "updated_at": "2025-10-20T12:00:00Z",
+      "county": {
+        "id": 1,
+        "name": "Pest",
+        "code": "PE"
+      }
+    }
+  ]
+}
+
+2.2 Create Settlement
+
+Endpoint: POST /settlements
+
+Request Body: application/json
+
+{
+  "name": "Budapest",
+  "postal_code": "1000",
+  "county_id": 1
+}
+
+
+Response (201 Created):
+
+{
+  "message": "Settlement created successfully",
+  "settlement": {
+    "id": 1,
+    "name": "Budapest",
+    "postal_code": "1000",
+    "county_id": 1,
+    "created_at": "2025-10-20T12:00:00Z",
+    "updated_at": "2025-10-20T12:00:00Z"
+  }
+}
+
+2.3 Update Settlement
+
+Endpoint: PUT /settlements/{id}
+
+Request Body: application/json
+
+{
+  "name": "Budapest XI",
+  "postal_code": "1111",
+  "county_id": 1
+}
+
+
+Response (200 OK):
+
+{
+  "message": "Settlement updated successfully",
+  "settlement": {
+    "id": 1,
+    "name": "Budapest XI",
+    "postal_code": "1111",
+    "county_id": 1,
+    "created_at": "2025-10-20T12:00:00Z",
+    "updated_at": "2025-10-20T12:15:00Z"
+  }
+}
+
+2.4 Delete Settlement
+
+Endpoint: DELETE /settlements/{id}
+
+Response (200 OK):
+
+{
+  "message": "Settlement deleted successfully"
+}
+
+3. User Authentication API
+3.1 Login
+
+Endpoint: POST /login
+
+Request Body: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+
+Response (200 OK):
+
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "user@example.com",
+    "token": "plain-text-token-here",
+    "created_at": "2025-10-20T12:00:00Z",
+    "updated_at": "2025-10-20T12:00:00Z"
+  }
+}
+
+
+Response (401 Unauthorized):
+
+{
+  "message": "invalid login"
+}
