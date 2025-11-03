@@ -31,7 +31,7 @@ class SettlementsController extends Controller
     }
     public function updateWhere(SettlementRequest $request, $c_id, $s_id){
         $settlement = PostalCode::findOrFail($s_id);
-        if ($settlement->count()->id()==$c_id) {
+        if ($settlement->county()->id()==$c_id) {
             $settlement->update($request->all());
         return response()->json(['message' => 'Settlement updated successfully', 'settlement' => $settlement]);
     
@@ -41,5 +41,13 @@ class SettlementsController extends Controller
         $settlement = PostalCode::findOrFail($id);
         $settlement->delete();
         return response()->json(['message' => 'Settlement deleted successfully']);
+    }
+    public function destroyWhere($c_id, $s_id){
+        $settlement = PostalCode::findOrFail($s_id);
+        if ($settlement->county()->id()==$c_id) {
+            $settlement->delete();
+        return response()->json(['message' => 'Settlement deleted successfully']);
+    
+        }
     }
 }
