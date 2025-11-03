@@ -15,6 +15,9 @@ Route::patch('/settlements/{id}', [SettlementsController::class,'update'])->midd
 Route::patch('/counties/{id}', [CountiesController::class,'update'])->middleware('auth:sanctum');
 Route::delete('/settlements/{id}', [SettlementsController::class,'destroy'])->middleware('auth:sanctum');
 Route::delete('/counties/{id}', [CountiesController::class,'destroy'])->middleware('auth:sanctum');
+Route::post('/counties/{id}/settlements/{id}', [SettlementsController::class,'store'])->middleware('auth:sanctum');
+Route::patch('/counties/{id}/settlements/{id}', [SettlementsController::class,'update'])->middleware('auth:sanctum');
+Route::delete('/counties/{id}/settlements/{id}', [SettlementsController::class,'destroy'])->middleware('auth:sanctum');
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
