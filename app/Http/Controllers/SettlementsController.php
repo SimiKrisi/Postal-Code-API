@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\PostalCode;
 
 use App\Http\Requests\SettlementRequest;
+use App\Models\County;
+use PhpParser\Node\Expr\PostDec;
 
 class SettlementsController extends Controller
 {
@@ -26,6 +28,14 @@ class SettlementsController extends Controller
         $settlement = PostalCode::findOrFail($id);
         $settlement->update($request->all());
         return response()->json(['message' => 'Settlement updated successfully', 'settlement' => $settlement]);
+    }
+    public function updateWhere(SettlementRequest $request, $c_id, $s_id){
+        $settlement = PostalCode::findOrFail($s_id);
+        if ($settlement->count()->id()==$c_id) {
+            $settlement->update($request->all());
+        return response()->json(['message' => 'Settlement updated successfully', 'settlement' => $settlement]);
+    
+        }
     }
     public function destroy($id){
         $settlement = PostalCode::findOrFail($id);
