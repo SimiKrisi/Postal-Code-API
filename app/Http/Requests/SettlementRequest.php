@@ -29,7 +29,7 @@ class SettlementRequest extends FormRequest
             ];
         }
         return [
-           'code' => 'required|digits:4',
+            'code' => 'required|digits:4',
             'name' => 'required|string|max:255',
             'county_id' => 'nullable|exists:counties,id',
         ];

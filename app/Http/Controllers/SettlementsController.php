@@ -16,6 +16,11 @@ class SettlementsController extends Controller
         $settlement = PostalCode::create($request->all());
         return response()->json(['message' => 'Settlement created successfully', 'settlement' => $settlement], 201);
     }
+    public function storeWhere(SettlementRequest $request, $c_id, ){
+        $settlement = PostalCode::create($request->code()->name());
+        $settlement->county_id($c_id);
+        return response()->json(['message' => 'Settlement created successfully', 'settlement' => $settlement], 201);
+    }
     
     public function update(SettlementRequest $request, $id){
         $settlement = PostalCode::findOrFail($id);
