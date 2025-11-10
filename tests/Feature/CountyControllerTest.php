@@ -25,16 +25,17 @@ class CountyControllerTest extends TestCase
     }
     public function test_store_creates_new_county()
     {
+        
         $user=User::factory()->create();
         $token = $user->createToken('TestToken')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization'=> 'Bearer'.$token,
+            'Authorization'=> 'Bearer '.$token,
         ])->postJson('/api/counties',[
             'name' =>'Somogy'
         ]);
 
-        $response->assertStatus(201)->assertJsonFragment(['county'=>'Somogy']);
+        $response->assertStatus(201)->assertJsonFragment(['name'=>'Somogy']);
         $this->assertDatabaseHas('counties',['name' =>'Somogy']);
     }
     public function test_update_modifies_existing_county(){
@@ -43,7 +44,7 @@ class CountyControllerTest extends TestCase
 
         $county = County::factory()->create(['name'=>'Heves']);
         $response = $this->withHeaders([
-            'Authorization'=> 'Bearer'.$token,
+            'Authorization'=> 'Bearer '.$token,
         ])->putJson("/api/counties/{$county->id}",['name'=>'Nógrád']);
         $response->assertStatus(200)
             ->assertJsonFragment(['name'=>'Nógrád'])
@@ -51,12 +52,13 @@ class CountyControllerTest extends TestCase
         $this->assertDatabaseHas('counties', ['id'=>$county->id, 'name'=>'Nógrád']);
     }
     public function test_delete_removes_county(){
+        
         $user=User::factory()->create();
         $token = $user->createToken('TestToken')->plainTextToken;
 
         $county = County::factory()->create(['name'=>"Vas"]);
         $response = $this->withHeaders([
-            'Authorization'=> 'Bearer'.$token,
+            'Authorization'=> 'Bearer '.$token,
         ])->deleteJson("/api/counties/{$county->id}");
         $response->assertStatus(410)->assertJsonFragment(['message'=>"County deleted successfully"]);
         $this->assertDatabaseMissing('counties',['id'=>$county->id]);
