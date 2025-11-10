@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => "admin",
         ]);
+
+        $this->call(CountySeeder::class);
+        $this->call(PostalCodeSeeder::class);
         
     }
 }
